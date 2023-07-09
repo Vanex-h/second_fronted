@@ -1,0 +1,16 @@
+.relative:hover .absolute {
+    display: block;
+    transform: translateX(-3em);
+  }
+
+  
+  .nav div {
+      display: none;
+    }
+    
+    .nav div:hover {
+        display: block;}  
+        
+        .nav section{
+          cursor: pointer;
+        }
