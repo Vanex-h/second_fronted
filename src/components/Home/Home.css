@@ -14,3 +14,43 @@
         .nav section{
           cursor: pointer;
         }
+        .second{
+          background-image: linear-gradient( rgba(0, 0, 0, 0.5),  rgba(0, 0, 0, 0.5)),url(https://media.edutopia.org/styles/responsive_2880px_16x9/s3/sites/default/files/masters/2022-01/istockphoto-1334050812-crop.jpg);
+          background-size:cover;
+          
+          min-height: 80vh;
+          width: 100%;
+         color: white;
+         
+      
+      }
+      .mid{
+        display: block;
+        line-height: 40px;
+        margin-top: 7em;
+    }
+    button{
+      color: white;
+      width: 107px;
+     height: 35px;
+     background-color: #96BB7C;
+     font-size: 14px;
+     border: #96BB7C;
+    line-height: 35px;
+    transform: translateY(-6px);
+    overflow: hidden;
+    
+  }
+
+  .join{
+    line-height: 40px;
+}
+.join i{
+    animation-name: one;
+    animation-duration: 1s;
+    animation-iteration-count:infinite;
+    font-size: smaller;
+
+}
+      
+      

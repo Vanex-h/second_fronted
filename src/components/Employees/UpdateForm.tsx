@@ -22,7 +22,7 @@ const UpdateForm = () => {
       setlastName(data.lastName);
       setemail(data.email);
       setusername(data.username);
-    })();
+    }());
   }, []);
 
   const handleUpdate = async () => {
