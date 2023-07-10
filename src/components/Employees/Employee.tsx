@@ -1,13 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import {FC, useEffect, useState} from 'react'
-interface EmployeeProps{
-    firstName:string;
-    lastName: string;
-    email: string;
-    username:string;
-    _id: string;
-    deleteHandler: (_id:string) => void;
-}
+import Emp from "./Emp"
 const Employee =()=> {
     const [Loading, setLoading]= useState(false)
     const navigate= useNavigate(); 
@@ -18,7 +11,7 @@ const Employee =()=> {
             setLoading(true);
             const token= localStorage.getItem('token') as string;
             const response= await fetch('http://localhost:1600/all', {
-                method:"GET",
+                method:"GET", 
                 headers:{
                     authorization: token,
                 },
@@ -38,15 +31,15 @@ const handleDelete= async(id:string)=>{
     }
 }
 
-const update= async(id:string)=>{
-    const res= await fetch(`http://localhost:1600/${id}`,{
-        method: "PUT",
-        body:JSON.stringify({
-        })
-    })
-}
+// const update= async(id:string)=>{
+//     const res= await fetch(`http://localhost:1600/update/${id}`,{
+//         method: "PUT",
+//         body:JSON.stringify({
+//         })
+//     })
+// }
   return (
-    <div className="w-screen h-screen bg-white">
+    <div className="w-screen h-screen bg-white overflow-x-hidden">
     <nav className="h-12 items-center bg-[#7FBA5C] flex flex-row justify-around w-full text-white">
       <section className="relative cursor-pointer " >
         All employees
@@ -55,7 +48,7 @@ const update= async(id:string)=>{
           hello
           </div>
           <div className='bg-transparent'>
-          <Link to="/employee" className='bg-transparent text-[#7FBA5C] '>Employees</Link>
+          <Link to="/employees" className='bg-transparent text-[#7FBA5C] '>Employees</Link>
           </div>
         </div>
       </section>
@@ -82,40 +75,44 @@ const update= async(id:string)=>{
         </div>
       </section>
       <section className="relative cursor-pointer">
-        Logout
-        <div className="hidden absolute top-full mt-0 bg-[#5cbaba00] text-sm w-40">
-          <div className='bg-transparent text-[#7eba5c00] '>
-          hello
-          </div>
-          <div className='bg-transparent'>
-          <Link to="/" className='bg-transparent text-[#7FBA5C] '>Some Link</Link>
-          </div>
-        </div>    
-      </section>
+          <Link to="/login">
+
+          Logout
+          </Link>
+             
+        </section>
     </nav>
-    <div className="container">
+    <h1 className="text-2xl text-[#5c9e27] font-extrabold m-3">Employee Table</h1>
+    <div className="first-letter: ">
         {Loading&&"Loading"}
         {!Loading &&employees !=null &&(
+            <div>
+    <div className="p-4 pl-12  items-start flex flex-row justify-around  bg-[#5c9e27] text-white border-b-2">
+    <div className="flex flex-row justify-between w-40 ">
 
-        <table className="table-auto">
-            <tr>
-                <thead>First Name</thead>
-                <thead>Last Name</thead>
-                <thead>Email</thead>
-                <thead>Username</thead>
-            </tr>
-            <tr>
-                {/* <td>{firstName}</td>
-                <td>{lastName}</td>
-                <td>{email}</td>
-                <td>{username}</td> */}
-            </tr>
-        </table>
+<span className="font-bold text-sm">First Name</span>
+<span className="font-bold text-sm">Last Name</span>
+  </div>
+<span className="font-bold w-1/4 ">Username</span>
+<span className="font-bold w-1/4">Email</span>
+<span className="font-bold w-1/4">Update</span>
+<span className="font-bold w-1/4">Delete</span>
+</div>
+                
+                {employees.map((employee, i)=>(
+                    <Emp key={i}
+                    
+                    firstName={employee.firstName}
+                    
+                    lastName={employee.lastName} username={employee.username} email={employee.email} _id={employee._id} deleteHandler={handleDelete}  />
+                ))}{" "}
+            </div>
 
         )}
         {
-            (!loading&&employees==null)||(employees?.length==0 && <div>No employees</div>)
+            (!Loading&&employees==null)||(employees?.length==0 &&<div>Users empty</div>)
         }
+
     </div>
   </div>
   )
